@@ -25,7 +25,6 @@ const chatReducer = (state = initialstate, action) => {
       return {
         ...state,
         messages: [...state.messages, action.payload],
-        error: null,
       };
     case SEND_MESSAGE_FAIL:
       return { ...state,

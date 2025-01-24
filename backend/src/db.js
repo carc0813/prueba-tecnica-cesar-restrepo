@@ -23,10 +23,19 @@ fs.readdirSync(path.join(__dirname, '/models'))
 
 // Injectamos la conexion (sequelize) a todos los modelos
 
+// Injectamos la conexion (sequelize) a todos los modelos
+modelDefiners.forEach(model => model(sequelize));
+// Capitalizamos los nombres de los modelos ie: product => Product
+let entries = Object.entries(sequelize.models);
+let capsEntries = entries.map((entry) => [entry[0][0].toUpperCase() + entry[0].slice(1), entry[1]]);
+sequelize.models = Object.fromEntries(capsEntries);
+//console.log('Modelos registrados:', sequelize.models);
 
-// Relación entre User y Message (Uno a muchos)
-User.hasMany(Message, { foreignKey: 'userId' }); // Un usuario puede tener muchos mensajes
-Message.belongsTo(User, { foreignKey: 'userId' }); // Un mensaje pertenece a un usuario
+const { User, Message } = sequelize.models;
+
+// Configuración de relaciones
+User.hasMany(Message, { foreignKey: 'UserId' }); // Un usuario puede tener muchos mensajes
+Message.belongsTo(User, { foreignKey: 'UserId' }); // Un mensaje pertenece a un usuario
 
 module.exports = {
   ...sequelize.models, // para poder importar los modelos así: const { Product, User } = require('./db.js');

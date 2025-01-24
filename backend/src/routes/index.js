@@ -1,12 +1,14 @@
 const { Router } = require("express");
-const express = require("express");
+
+// Importar las rutas específicas
+const messagesRoutes = require("./messages.routes"); // Rutas de mensajes
+const registerRoutes = require("./register.routes"); // Rutas de registro
 
 const router = Router();
 
-const messagesRoutes = require("../routes/messages.routes"); // Importa las rutas de mensajes
-const app = express();
-
-// Configuración de rutas
-router.use("/messages", messagesRoutes); // Rutas relacionadas con mensajes
+// Configuración de rutas principales
+router.use("/messages", messagesRoutes); // Prefijo /messages para mensajes
+router.use("/register", registerRoutes); // Prefijo /register para registro
 
 module.exports = router;
+

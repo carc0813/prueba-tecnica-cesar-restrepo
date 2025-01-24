@@ -1,24 +1,22 @@
 const { DataTypes } = require('sequelize');
 
 module.exports = (sequelize) => {
-  sequelize.define('Message', {
+  sequelize.define('message', {
     id: {
-      type: DataTypes.UUID,
+      type: DataTypes.INTEGER,
+      autoIncrement: true, // Genera automáticamente el ID
       primaryKey: true,
-      allowNull: false,
-      defaultValue: DataTypes.UUIDV4,
     },
     content: {
-      type: DataTypes.TEXT,
+      type: DataTypes.STRING, // Contenido del mensaje
       allowNull: false,
     },
     sender: {
-      type: DataTypes.ENUM('user', 'bot'), // Identifica si el mensaje es del usuario o del bot
+      type: DataTypes.STRING, // Puede ser 'user' o 'bot'
       allowNull: false,
     },
     timestamps: {
       type: DataTypes.DATE,
-      allowNull: false,
       defaultValue: DataTypes.NOW,
     },
   });

@@ -1,10 +1,18 @@
 
-import React from 'react'
+import React from "react";
+import { AppBar, Toolbar, Typography} from "@mui/material";
 
- const Navbar = () => {
+const Navbar = () => {
   return (
-    <div><h1>Navbar</h1></div>
-  )
-}
+    <AppBar position="static">
+      <Toolbar>
+        <Typography variant="h6" sx={{ flexGrow: 1 }}>
+          Chatbot App
+        </Typography>
+        
+      </Toolbar>
+    </AppBar>
+  );
+};
 
 export default Navbar;

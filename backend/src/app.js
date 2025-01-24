@@ -21,6 +21,10 @@ server.use((req, res, next) => {
   res.header('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, DELETE');
   next();
 });
+server.options('*', (req, res) => {
+  res.sendStatus(200); // Responde con éxito a cualquier solicitud OPTIONS
+});
+
 
 server.use('/', routes);
 
